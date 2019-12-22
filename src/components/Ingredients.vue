@@ -1,89 +1,123 @@
 <template>
   <div id="app2">
     <h2>Choose ingredients</h2>
+    <h5>On the pizza:</h5> 
+    <b-form-row label="I would like to have them on my pizza:">
+      <b-form-checkbox inline
+        v-for="ingredient in ingredients"
+        v-model="wanted"
+        :key="ingredient"
+        :value="ingredient"
+        dataClass= 'center aligned'
+        switch
+        name="buttons-2"
 
-      <b-form-group label="I would like to have them on my pizza:">
-        <b-form-checkbox
-          v-for="ingredient in ingredients"
-          v-model="wanted"
-          :key="ingredient"
-          :value="ingredient"
-          name="flavour-3a"
-        >
-          {{ ingredient }}
-        </b-form-checkbox>
-      </b-form-group>
-      {{wanted}}
-      <br>  
+      >
+        <b-form-row>{{ ingredient }}</b-form-row>
+      </b-form-checkbox>
+    </b-form-row>
+    {{wanted}}
+    <br />
+    <h5>Not On the pizza:</h5> 
 
-      <b-form-group label="I don't want to have them on my pizza:">
-        <b-form-checkbox
-          v-for="ingredient in ingredients"
-          v-model="notwanted"
-          :key="ingredient"
-          :value="ingredient"
-          name="flavour-3a"
-        >
-          {{ ingredient }}
-        </b-form-checkbox>
-      </b-form-group>
-      {{notwanted}}
-    <br>
+    <b-form-row label="I don't want to have them on my pizza:">
+       <b-form-checkbox inline
+        v-for="ingredient in ingredients"
+        v-model="notwanted"
+        :key="ingredient"
+        :value="ingredient"
+        dataClass= 'center aligned'
+        switch
+        name="buttons-2"
+
+      >{{ ingredient }}</b-form-checkbox>
+    </b-form-row>
+    {{notwanted}}
+    <br />
     Your dreamed pizzas:
-    {{dreamed}}
+    <b-table-simple hover small caption-top responsive>
+      <b-thead head-variant="dark">
+        <b-tr>
+          <b-th>Pizzeria name</b-th>
+          <b-th>Pizza name</b-th>
+          <b-th>Ingredients</b-th>
+          <b-th>Price/size</b-th>
+
+        </b-tr>
+        <b-tr v-for="todo in dreamed" v-bind:key="todo.id">
+
+            <b-th>{{todo["_id"]}}</b-th>
+            <b-th>{{todo["_source"]["name"] }}</b-th>
+            <b-th>{{todo["_source"]["ingredients"]}}</b-th>
+            <b-th>{{todo["_source"]["size_price"]}}</b-th>
+            <b-th v-if="todo === 'No matching pizzas'">No pizzas</b-th>
+        </b-tr>
+      </b-thead>
+    </b-table-simple>
+
+    <!-- {{dreamed}} -->
   </div>
 </template>
 
 <script>
-import { BFormGroup, BFormCheckbox } from 'bootstrap-vue'
-import Vue from 'vue'
+import {
+  BFormGroup,
+  BFormCheckbox,
+  BFormRow,
+  BTableSimple,
+  BTr,
+  BTh,
+  BThead
+} from "bootstrap-vue";
+import Vue from "vue";
 import axios from "axios";
 
-Vue.component('b-form-group', BFormGroup)
-Vue.component('b-form-checkbox', BFormCheckbox)
+Vue.component("b-form-group", BFormGroup);
+Vue.component("b-form-checkbox", BFormCheckbox);
+Vue.component("b-form-row", BFormRow);
+Vue.component("b-table-simple", BTableSimple);
+Vue.component("b-tr", BTr);
+Vue.component("b-th", BTh);
+Vue.component("b-thead", BThead);
 
 export default {
   props: ["id"],
-      data() {
-      return {
-        ingredients: null,
-        dreamed: null,
-        wanted: [], // Must be an array reference!
-        testeding: [],
-        notwanted: [],
-      }
+  data() {
+    return {
+      ingredients: null,
+      dreamed: null,
+      wanted: [], // Must be an array reference!
+      testeding: [],
+      notwanted: []
+    };
+  },
+
+  created: function() {
+    axios.get("http://localhost:5000/api/all_ingredients").then(res => {
+      this.ingredients = res.data;
+    });
+  },
+  methods: {
+    created2: function(current_wanted, current_notwanted) {
+      axios
+        .post("http://localhost:5000/api/choosen-ingredients", {
+          must: current_wanted,
+          must_not: current_notwanted
+        })
+        .then(res => {
+          console.log(res.data);
+          this.dreamed = res.data;
+        });
+    }
+  },
+  watch: {
+    wanted: function(x) {
+      this.created2(x, this.notwanted);
     },
-    
-      created: function() {
-        axios
-      .get("http://localhost:5000/api/all_ingredients")
-      .then(res => {
-        this.ingredients = res.data;
-                   }    
-            )
-      }      ,
-      methods:{
-
-      created2: function(current_wanted,current_notwanted){
-           axios
-      .post("http://localhost:5000/api/choosen-ingredients", {must: current_wanted, must_not: current_notwanted})
-      .then(res => {
-        console.log(res.data);
-        this.dreamed = res.data;
-      }    
-      )
-      }
-    },
-      watch:{
-        wanted: function(x){  
-            this.created2(x,this.notwanted)    
-      },
-        notwanted: function(y){  
-            this.created2(this.wanted,y)   
-        }
-
-      }
-
+    notwanted: function(y) {
+      this.created2(this.wanted, y);
+    }
+  }
 };
 </script>
 

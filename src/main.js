@@ -1,10 +1,15 @@
+
 import Vue from 'vue'
 import App from './App.vue';
 import VueRouter from "vue-router";
 import Ingredients from './components/Ingredients.vue';
 import Home from './components/Home.vue';
+import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 Vue.use(VueRouter);
+Vue.use(BootstrapVue)
 
 const router = new VueRouter({
   //mode: "history",
