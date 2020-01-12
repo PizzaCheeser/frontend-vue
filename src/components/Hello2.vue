@@ -1,9 +1,8 @@
 <template>
-<div>
+  <div>
     test
-        <test title="asf2"></test>
-
-    </div>
+    <test title="asf2"></test>
+  </div>
 </template>
 
 
@@ -19,7 +18,7 @@ export default {
     Test
   },
   name: "Hello2",
-  
+
   props: {
     msg: String
   }

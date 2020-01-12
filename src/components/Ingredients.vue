@@ -1,31 +1,29 @@
 <template>
   <div id="app2">
     <h2>Choose ingredients</h2>
-    <h5>On the pizza:</h5> 
-    <autocomplete :search="search"
-    placeholder="Search for a ingredient"
-    aria-label="Search for a ingredient"></autocomplete>
+    <h5>On the pizza:</h5>
+    <autocomplete
+      :search="search"
+      placeholder="Search for a ingredient"
+      aria-label="Search for a ingredient"
+    ></autocomplete>
 
-      <b-form-row label="I would like to have them on my pizza choosen:">
-      <b-form-checkbox inline
+    <b-form-row label="I would like to have them on my pizza choosen:">
+      <b-form-checkbox
+        inline
         v-for="ingredient in result"
         v-model="wanted"
         :key="ingredient"
         :value="ingredient"
-        dataClass= 'center aligned'
+        data-class="center aligned"
         switch
         name="buttons-2"
-
       >
         <b-form-row>{{ ingredient }}</b-form-row>
       </b-form-checkbox>
     </b-form-row>
 
-
-
-
-
-<!-- 
+    <!-- 
     <b-form-row label="I would like to have them on my pizza:">
       <b-form-checkbox inline
         v-for="ingredient in ingredients"
@@ -39,26 +37,25 @@
       >
         <b-form-row>{{ ingredient }}</b-form-row>
       </b-form-checkbox>
-    </b-form-row> -->
+    </b-form-row>-->
     {{wanted}}
     <br />
-    <h5>Not On the pizza:</h5> 
+    <h5>Not On the pizza:</h5>
 
     <b-form-row label="I don't want to have them on my pizza:">
-       <b-form-checkbox inline
+      <b-form-checkbox
+        inline
         v-for="ingredient in ingredients"
         v-model="notwanted"
         :key="ingredient"
         :value="ingredient"
-        dataClass= 'center aligned'
+        data-class="center aligned"
         switch
         name="buttons-2"
-
       >{{ ingredient }}</b-form-checkbox>
     </b-form-row>
     {{notwanted}}
-    <br />
-    Your dreamed pizzas:
+    <br />Your dreamed pizzas:
     <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
@@ -66,15 +63,13 @@
           <b-th>Pizza name</b-th>
           <b-th>Ingredients</b-th>
           <b-th>Price/size</b-th>
-
         </b-tr>
         <b-tr v-for="todo in dreamed" v-bind:key="todo.id">
-
-            <b-th>{{todo["_id"]}}</b-th>
-            <b-th>{{todo["_source"]["name"] }}</b-th>
-            <b-th>{{todo["_source"]["ingredients"]}}</b-th>
-            <b-th>{{todo["_source"]["size_price"]}}</b-th>
-            <b-th v-if="todo === 'No matching pizzas'">No pizzas</b-th>
+          <b-th>{{todo["_id"]}}</b-th>
+          <b-th>{{todo["_source"]["name"] }}</b-th>
+          <b-th>{{todo["_source"]["ingredients"]}}</b-th>
+          <b-th>{{todo["_source"]["size_price"]}}</b-th>
+          <b-th v-if="todo === 'No matching pizzas'">No pizzas</b-th>
         </b-tr>
       </b-thead>
     </b-table-simple>
@@ -104,10 +99,9 @@ Vue.component("b-tr", BTr);
 Vue.component("b-th", BTh);
 Vue.component("b-thead", BThead);
 
+import "@trevoreyre/autocomplete-vue/dist/style.css";
 
-import '@trevoreyre/autocomplete-vue/dist/style.css'
-
-import Autocomplete from '@trevoreyre/autocomplete-vue'
+import Autocomplete from "@trevoreyre/autocomplete-vue";
 
 Vue.component("autocomplete", Autocomplete);
 
@@ -120,18 +114,17 @@ export default {
       wanted: [], // Must be an array reference!
       testeding: [],
       notwanted: [],
-      result : null,
+      result: null
     };
   },
 
   created: function() {
     axios.get("http://localhost:5000/api/all_ingredients").then(res => {
       this.ingredients = res.data;
-            this.result = res.data;
-
+      this.result = res.data;
     });
   },
-      components: {Autocomplete},
+  components: { Autocomplete },
   methods: {
     created2: function(current_wanted, current_notwanted) {
       axios
@@ -144,16 +137,15 @@ export default {
           this.dreamed = res.data;
         });
     },
-     search(input) {
-        if (input.length < 1) { this.result = this.ingredients
-        }
-        this.result = this.ingredients.filter(ingredient => {
-            return ingredient.toLowerCase()
-            .startsWith(input.toLowerCase())
-        })
-        //return this.result
-
-        }
+    search(input) {
+      if (input.length < 1) {
+        this.result = this.ingredients;
+      }
+      this.result = this.ingredients.filter(ingredient => {
+        return ingredient.toLowerCase().startsWith(input.toLowerCase());
+      });
+      //return this.result
+    }
   },
   watch: {
     wanted: function(x) {
