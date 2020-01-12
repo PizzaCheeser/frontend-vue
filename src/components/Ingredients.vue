@@ -1,5 +1,14 @@
 <template>
   <div id="app2">
+    <ingredients-table
+      v-bind:ingredients="ingredients"
+      @ingredients="updateIngredients"
+      @wanted="updateWanted"
+      @notwanted="updateNotWanted"
+    ></ingredients-table>
+
+    {{this.wanted}}
+    {{this.notwanted}}
     <h2>Choose ingredients</h2>
     <h5>On the pizza:</h5>
     <autocomplete
@@ -99,6 +108,9 @@ Vue.component("b-tr", BTr);
 Vue.component("b-th", BTh);
 Vue.component("b-thead", BThead);
 
+import Test from "./Test";
+Vue.component("ingredients-table", Test);
+
 import "@trevoreyre/autocomplete-vue/dist/style.css";
 
 import Autocomplete from "@trevoreyre/autocomplete-vue";
@@ -126,6 +138,16 @@ export default {
   },
   components: { Autocomplete },
   methods: {
+    updateWanted(variable) {
+      this.wanted = variable;
+    },
+    updateNotWanted(variable) {
+      this.notwanted = variable;
+    },
+    updateIngredients(variable) {
+      this.ingredients = variable;
+    },
+
     created2: function(current_wanted, current_notwanted) {
       axios
         .post("http://localhost:5000/api/choosen-ingredients", {

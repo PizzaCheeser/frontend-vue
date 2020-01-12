@@ -71,44 +71,56 @@
 <script>
 export default {
   name: "Test",
+  props: ["ingredients"],
 
   data() {
     return {
       wanted: [], // Must be an array reference!
-      notwanted: [],
-      ingredients: ["ser", "pomidor", "papryka", "mleko"]
+      notwanted: []
+      //localIngredients: this.ingredients //["ser", "pomidor", "papryka", "mleko"]
     };
   },
   //props:{ingredients:["mleko", "ser"]},
   methods: {
     add(ingredient) {
       this.wanted.push(ingredient);
-      this.ingredients = this.ingredients.filter(function(e) {
+      let localIngredients = this.ingredients.filter(function(e) {
         return e !== ingredient;
       });
       console.log(this.wanted);
+      this.$emit("wanted", this.wanted);
+      this.$emit("ingredients", localIngredients);
+
       return this.wanted;
     },
     remove(ingredient) {
       this.notwanted.push(ingredient);
       //this.ingredients.pop(ingredient)
-      this.ingredients = this.ingredients.filter(function(e) {
+      let localIngredients = this.ingredients.filter(function(e) {
         return e !== ingredient;
       });
       console.log(this.notwanted);
+      this.$emit("notwanted", this.notwanted);
+      this.$emit("ingredients", localIngredients);
+
       return this.notwanted;
     },
     returnToAll(ingredient, arg) {
-      this.ingredients.push(ingredient);
+      let localIngredients = this.ingredients;
+      localIngredients.push(ingredient);
+      this.$emit("ingredients", localIngredients);
+
       if (arg === "wanted") {
         this.wanted = this.wanted.filter(function(e) {
           return e !== ingredient;
         });
+        this.$emit("wanted", this.wanted);
         return this.wanted;
       } else if (arg === "notwanted") {
         this.notwanted = this.notwanted.filter(function(e) {
           return e !== ingredient;
         });
+        this.$emit("notwanted", this.notwanted);
         return this.notwanted;
       } else return 1;
     }
