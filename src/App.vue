@@ -5,20 +5,10 @@
 </template>
 
 <script>
-//import HelloWorld from "./components/HelloWorld.vue";
-//import Ingredients from "./components/Ingredients.vue";
-//import User from "./components/User.vue";
-//import Pizzas from "./components/Pizzas.vue";
-//import TempIngredients from "./components/TempIngredients.vue";
+
 
 export default {
   name: "app",
-  components: {
- //   Ingredients,
- //   User
-  //  Pizzas,
-  //  TempIngredients
-  }
 };
 </script>
 

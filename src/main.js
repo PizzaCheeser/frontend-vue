@@ -1,10 +1,10 @@
-
 import Vue from 'vue'
 import App from './App.vue';
 import VueRouter from "vue-router";
-import Ingredients from './components/Ingredients.vue';
+import PizzaChooserPage from './components/PizzaChooserPage.vue';
 import Home from './components/Home.vue';
-import Test from './components/Test.vue';
+import IngredientsTable from './components/IngredientsTable.vue';
+import PizzasTable from './components/PizzasTable.vue';
 
 
 import BootstrapVue from 'bootstrap-vue'
@@ -17,12 +17,13 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue)
 
 const router = new VueRouter({
-  //mode: "history",
   routes: [
-    { path: '/', name: 'app', component: App },
-    { path: '/home', component: Home },
-    { path: '/ingredients', component: Ingredients },
-    { path: '/test', component: Test },
+    //{ path: '/', name: 'app', component: App },
+    { path: '/', component: Home },
+    { path: '/choose', component: PizzaChooserPage },
+    { path: '/ingredients-table', component: IngredientsTable },
+    { path: '/pizzas-table', component: PizzasTable },
+
 
 
   ]

@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <Hello msg="Welcome to Pizza Cheeser!" />    
-    <router-link to="/ingredients" tag="button">Choose ingredients!</router-link>
+    <DetailedText msg="Welcome to Pizza Cheeser!" />    
+    <router-link to="/choose" tag="button">Choose ingredients!</router-link>
   </div>
 </template>
 
 <script>
-import Hello from "./Hello.vue";
+import DetailedText from "./DetailedText.vue";
 
 export default {
   name: "app",
   components: {
-    Hello
+    DetailedText
   }
 };
 </script>

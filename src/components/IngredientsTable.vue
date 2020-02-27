@@ -40,7 +40,7 @@
               >
                 <i class="glyphicon glyphicon-remove"></i>
               </button>
-                            <button
+              <button
                 value="testest"
                 type="button"
                 v-on:click="add(ingredient)"
@@ -77,18 +77,16 @@
 
 
 export default {
-  name: "Test",
+  name: "IngredientsTable",
   props: ["ingredients"],
 
   data() {
     return {
-      wanted: [], // Must be an array reference!
+      wanted: [],
       notwanted: []
-      //localIngredients: this.ingredients //["ser", "pomidor", "papryka", "mleko"]
     };
   },
-  //props:{ingredients:["mleko", "ser"]},
-  methods: {
+    methods: {
     add(ingredient) {
       this.wanted.push(ingredient);
       let localIngredients = this.ingredients.filter(function(e) {
