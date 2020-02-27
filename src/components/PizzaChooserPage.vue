@@ -28,8 +28,10 @@ import {
   BTh,
   BThead
 } from "bootstrap-vue";
+
 import Vue from "vue";
 import axios from "axios";
+import config from '../config'
 
 Vue.component("b-form-group", BFormGroup);
 Vue.component("b-form-checkbox", BFormCheckbox);
@@ -45,6 +47,8 @@ Vue.component("ingredients-table", IngredientsTable);
 import PizzasTable from "./PizzasTable";
 Vue.component("pizzas-table", PizzasTable);
 
+
+
 export default {
   props: ["id"],
   data() {
@@ -56,7 +60,7 @@ export default {
   },
 
   created: function() {
-    axios.get("http://localhost:5000/api/all_ingredients").then(res => {
+    axios.get(config.API_URL + "all_ingredients").then(res => {
       this.ingredients = res.data;
     });
   },

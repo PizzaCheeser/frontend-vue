@@ -1,20 +1,18 @@
 <template>
   <div>
-    pizzas: {{wanted}}
-
      <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
-          <b-th>nr</b-th>
+          <b-th>No.</b-th>
           <b-th>URL</b-th>
           <b-th>Pizzeria name</b-th>
           <b-th>Pizza name</b-th>
           <b-th>Ingredients</b-th>
           <b-th>Price/size</b-th>
         </b-tr>
-        <b-tr v-for="pizza in dreamed" v-bind:key="pizza.id">
-          <b-td>1</b-td>
-          <b-td>www.pyszne.pl</b-td>
+        <b-tr v-for="(pizza,i) in dreamed" v-bind:key="pizza.id" v-bind:odd="i">
+            <b-td>{{i+1}}</b-td>
+          <b-td><a v-bind:href="'www.pyszne.pl'">Order here!</a></b-td>
           <b-td>{{pizza["_id"]}}</b-td>       
           <b-td>{{pizza["_source"]["name"] }}</b-td>
           <b-td>{{pizza["_source"]["ingredients"]}}</b-td>
@@ -25,8 +23,6 @@
     </b-table-simple>
   </div>
 </template>
-
-
 
 <script>
 import {
@@ -40,6 +36,7 @@ import {
 } from "bootstrap-vue";
 import Vue from "vue";
 import axios from "axios";
+import config from '../config'
 
 Vue.component("b-form-group", BFormGroup);
 Vue.component("b-form-checkbox", BFormCheckbox);
@@ -63,7 +60,7 @@ export default {
   methods: {
     get_result_pizzas: function(current_wanted, current_notwanted) {
       axios
-        .post("http://localhost:5000/api/choosen-ingredients", {
+        .post(config.API_URL+"choosen-ingredients", {
           must: current_wanted,
           must_not: current_notwanted,
           code: '30-122'
