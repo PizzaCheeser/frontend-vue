@@ -1,5 +1,6 @@
 <template>
   <div id="app2">
+        <h2>Choose ingredients</h2>
     <ingredients-table
       v-bind:ingredients="ingredients"
       @ingredients="updateIngredients"
@@ -9,81 +10,29 @@
 
     {{this.wanted}}
     {{this.notwanted}}
-    <h2>Choose ingredients</h2>
-    <h5>On the pizza:</h5>
-    <autocomplete
-      :search="search"
-      placeholder="Search for a ingredient"
-      aria-label="Search for a ingredient"
-    ></autocomplete>
 
-    <b-form-row label="I would like to have them on my pizza choosen:">
-      <b-form-checkbox
-        inline
-        v-for="ingredient in result"
-        v-model="wanted"
-        :key="ingredient"
-        :value="ingredient"
-        data-class="center aligned"
-        switch
-        name="buttons-2"
-      >
-        <b-form-row>{{ ingredient }}</b-form-row>
-      </b-form-checkbox>
-    </b-form-row>
-
-    <!-- 
-    <b-form-row label="I would like to have them on my pizza:">
-      <b-form-checkbox inline
-        v-for="ingredient in ingredients"
-        v-model="wanted"
-        :key="ingredient"
-        :value="ingredient"
-        dataClass= 'center aligned'
-        switch
-        name="buttons-2"
-
-      >
-        <b-form-row>{{ ingredient }}</b-form-row>
-      </b-form-checkbox>
-    </b-form-row>-->
-    {{wanted}}
-    <br />
-    <h5>Not On the pizza:</h5>
-
-    <b-form-row label="I don't want to have them on my pizza:">
-      <b-form-checkbox
-        inline
-        v-for="ingredient in ingredients"
-        v-model="notwanted"
-        :key="ingredient"
-        :value="ingredient"
-        data-class="center aligned"
-        switch
-        name="buttons-2"
-      >{{ ingredient }}</b-form-checkbox>
-    </b-form-row>
-    {{notwanted}}
     <br />Your dreamed pizzas:
     <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
+          <b-th>nr</b-th>
+          <b-th>URL</b-th>
           <b-th>Pizzeria name</b-th>
           <b-th>Pizza name</b-th>
           <b-th>Ingredients</b-th>
           <b-th>Price/size</b-th>
         </b-tr>
-        <b-tr v-for="todo in dreamed" v-bind:key="todo.id">
-          <b-th>{{todo["_id"]}}</b-th>
-          <b-th>{{todo["_source"]["name"] }}</b-th>
-          <b-th>{{todo["_source"]["ingredients"]}}</b-th>
-          <b-th>{{todo["_source"]["size_price"]}}</b-th>
-          <b-th v-if="todo === 'No matching pizzas'">No pizzas</b-th>
+        <b-tr v-for="pizza in dreamed" v-bind:key="pizza.id">
+          <b-td>1</b-td>
+          <b-td>www.pyszne.pl</b-td>
+          <b-td>{{pizza["_id"]}}</b-td>       
+          <b-td>{{pizza["_source"]["name"] }}</b-td>
+          <b-td>{{pizza["_source"]["ingredients"]}}</b-td>
+          <b-td>{{pizza["_source"]["size_price"]}}</b-td>
+          <b-td v-if="pizza === 'No matching pizzas'">No pizzas</b-td>
         </b-tr>
       </b-thead>
     </b-table-simple>
-
-    <!-- {{dreamed}} -->
   </div>
 </template>
 
@@ -111,12 +60,6 @@ Vue.component("b-thead", BThead);
 import Test from "./Test";
 Vue.component("ingredients-table", Test);
 
-import "@trevoreyre/autocomplete-vue/dist/style.css";
-
-import Autocomplete from "@trevoreyre/autocomplete-vue";
-
-Vue.component("autocomplete", Autocomplete);
-
 export default {
   props: ["id"],
   data() {
@@ -124,7 +67,6 @@ export default {
       ingredients: null,
       dreamed: null,
       wanted: [], // Must be an array reference!
-      testeding: [],
       notwanted: [],
       result: null
     };
@@ -136,7 +78,6 @@ export default {
       this.result = res.data;
     });
   },
-  components: { Autocomplete },
   methods: {
     updateWanted(variable) {
       this.wanted = variable;
@@ -152,7 +93,8 @@ export default {
       axios
         .post("http://localhost:5000/api/choosen-ingredients", {
           must: current_wanted,
-          must_not: current_notwanted
+          must_not: current_notwanted,
+          code: '30-122'
         })
         .then(res => {
           console.log(res.data);

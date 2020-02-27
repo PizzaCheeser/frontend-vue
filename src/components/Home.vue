@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <Hello msg="Welcome to Pizza chooser!" />
+    <Hello msg="Welcome to Pizza Cheeser!" />    
     <router-link to="/ingredients" tag="button">Choose ingredients!</router-link>
   </div>
 </template>

@@ -29,16 +29,10 @@
           </b-td>
 
           <b-td>
+            <ul>
             <li v-for="ingredient in ingredients" :key="ingredient" :value="ingredient">
               {{ingredient}}
-              <button
-                value="testest"
-                type="button"
-                v-on:click="add(ingredient)"
-                class="btn btn-info btn-circle btn-lg"
-              >
-                <i class="glyphicon glyphicon-ok"></i>
-              </button>
+
               <button
                 type="button"
                 v-on:click="remove(ingredient)"
@@ -46,7 +40,16 @@
               >
                 <i class="glyphicon glyphicon-remove"></i>
               </button>
+                            <button
+                value="testest"
+                type="button"
+                v-on:click="add(ingredient)"
+                class="btn btn-info btn-circle btn-lg"
+              >
+                <i class="glyphicon glyphicon-ok"></i>
+              </button>
             </li>
+            </ul>
           </b-td>
 
           <b-td>
@@ -68,7 +71,11 @@
 </template>
 
 
+
+
 <script>
+
+
 export default {
   name: "Test",
   props: ["ingredients"],
@@ -169,15 +176,18 @@ body {
   line-height: 1.428571429;
   border-radius: 15px;
 }
+
 .btn-circle.btn-lg {
-  width: 20px;
-  height: 20px;
-  padding: 2px 2px;
+  width: 15px;
+  height: 15px;
+  padding: 1px 1px;
   font-size: 7px;
   line-height: 0.33;
   border-radius: 30px;
-  margin-right: 3px;
-  margin-left: 5px;
+  margin-right: 2px;
+  margin-left: 1px;
+  float:right; 
+
 }
 .btn-circle.btn-xl {
   width: 70px;
@@ -187,4 +197,21 @@ body {
   line-height: 1.33;
   border-radius: 35px;
 }
+
+ul {
+          column-count: 3;
+          column-gap: 1px;
+          list-style-type: none;
+          text-align: left;
+          width: 100%;
+          
+}
+
+li {
+  width: 80%;
+  margin: 0px;
+}
+
+
+
 </style>
