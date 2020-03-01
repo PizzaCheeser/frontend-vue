@@ -1,18 +1,27 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="../assets/logo.png" />
-    <DetailedText msg="Welcome to Pizza Cheeser!" />    
-    <router-link to="/choose" tag="button">Choose ingredients!</router-link>
+    <DetailedText msg="Welcome to Pizza Cheeser!" /> 
+
+     <br><br>
+
+
+    <PostCodeField></PostCodeField>
+
+
+    <!-- <router-link to="/choose" tag="button">Choose ingredients!</router-link> -->
   </div>
 </template>
 
 <script>
 import DetailedText from "./DetailedText.vue";
+import PostCodeField from "./PostCodeField"
 
 export default {
   name: "app",
   components: {
-    DetailedText
+    DetailedText,
+    PostCodeField
   }
 };
 </script>

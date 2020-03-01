@@ -14,6 +14,7 @@
     <pizzas-table
       v-bind:wanted="wanted"
       v-bind:notwanted="notwanted"
+      v-bind:postCode="postCode"
     ></pizzas-table>
   </div>
 </template>
@@ -50,7 +51,7 @@ Vue.component("pizzas-table", PizzasTable);
 
 
 export default {
-  props: ["id"],
+  props: ["id", "postCode"],
   data() {
     return {
       ingredients: null,
@@ -60,8 +61,9 @@ export default {
   },
 
   created: function() {
-    axios.get(config.API_URL + "all_ingredients").then(res => {
+    axios.get(config.API_URL + "all_ingredients/"+this.postCode).then(res => {
       this.ingredients = res.data;
+      console.log("postcode:", this.postCode)
     });
   },
   methods: {

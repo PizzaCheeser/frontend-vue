@@ -21,7 +21,7 @@ const router = new VueRouter({
   routes: [
     //{ path: '/', name: 'app', component: App },
     { path: '/', component: Home },
-    { path: '/choose', component: PizzaChooserPage },
+    { path: '/choose', component: PizzaChooserPage, name:"pizza-chooser", props: true},
     { path: '/ingredients-table', component: IngredientsTable },
     { path: '/pizzas-table', component: PizzasTable },
     { path: '/postcode', component: PostCodeField },

@@ -12,7 +12,7 @@
         </b-tr>
         <b-tr v-for="(pizza,i) in dreamed" v-bind:key="pizza.id" v-bind:odd="i">
             <b-td>{{i+1}}</b-td>
-          <b-td><a v-bind:href="'www.pyszne.pl'">Order here!</a></b-td>
+          <b-td><a v-bind:href="'http://www.pyszne.pl'">Order here!</a></b-td>
           <b-td>{{pizza["_id"]}}</b-td>       
           <b-td>{{pizza["_source"]["name"] }}</b-td>
           <b-td>{{pizza["_source"]["ingredients"]}}</b-td>
@@ -50,7 +50,7 @@ import IngredientsTable from "./IngredientsTable";
 Vue.component("ingredients-table", IngredientsTable);
 
 export default {
-  props: ["wanted", "notwanted"],
+  props: ["wanted", "notwanted", "postCode"],
   data() {
     return {
       dreamed: null,
@@ -63,7 +63,7 @@ export default {
         .post(config.API_URL+"choosen-ingredients", {
           must: current_wanted,
           must_not: current_notwanted,
-          code: '30-122'
+          code: this.postCode
         })
         .then(res => {
           console.log(res.data);
