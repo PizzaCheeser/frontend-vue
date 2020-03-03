@@ -66,7 +66,6 @@ export default {
           code: this.postCode
         })
         .then(res => {
-          console.log(res.data);
           this.dreamed = res.data;
         });
     },

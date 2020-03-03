@@ -92,7 +92,6 @@ export default {
       let localIngredients = this.ingredients.filter(function(e) {
         return e !== ingredient;
       });
-      console.log(this.wanted);
       this.$emit("wanted", this.wanted);
       this.$emit("ingredients", localIngredients);
 
@@ -104,7 +103,6 @@ export default {
       let localIngredients = this.ingredients.filter(function(e) {
         return e !== ingredient;
       });
-      console.log(this.notwanted);
       this.$emit("notwanted", this.notwanted);
       this.$emit("ingredients", localIngredients);
 

@@ -63,7 +63,6 @@ export default {
   created: function() {
     axios.get(config.API_URL + "all_ingredients/"+this.postCode).then(res => {
       this.ingredients = res.data;
-      console.log("postcode:", this.postCode)
     });
   },
   methods: {
