@@ -8,7 +8,7 @@ build-frontend:
     name: node:13.8.0-stretch
   stage: build-js
   variables:
-    - NODE_ENV: production
+    NODE_ENV: production
   script:
     - npm install
     - npm run build
