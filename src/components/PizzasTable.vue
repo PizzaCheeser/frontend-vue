@@ -12,11 +12,13 @@
         </b-tr>
         <b-tr v-for="(pizza,i) in dreamed" v-bind:key="pizza.id" v-bind:odd="i">
             <b-td>{{i+1}}</b-td>
-          <b-td><a v-bind:href="'http://www.pyszne.pl'">Order here!</a></b-td>
-          <b-td>{{pizza["_id"]}}</b-td>       
-          <b-td>{{pizza["_source"]["name"] }}</b-td>
-          <b-td>{{pizza["_source"]["ingredients"]}}</b-td>
-          <b-td>{{pizza["_source"]["size_price"]}}</b-td>
+          <b-td><a v-bind:href="pizza['url']">Order here!</a></b-td>
+          <b-td>{{pizza["pizzeria_id"]}}</b-td>       
+          <b-td>{{pizza["pizzeria_name"] }}</b-td>
+          <b-td>{{pizza["ingredients"]}}</b-td>
+          <b-td>{{pizza["size_price"]}}</b-td>
+
+          
           <b-td v-if="pizza === 'No matching pizzas'">No pizzas</b-td>
         </b-tr>
       </b-thead>
@@ -60,7 +62,7 @@ export default {
   methods: {
     get_result_pizzas: function(current_wanted, current_notwanted) {
       axios
-        .post(config.API_URL+"choosen-ingredients", {
+        .post(config.API_URL+"get-pizzas", {
           must: current_wanted,
           must_not: current_notwanted,
           code: this.postCode

@@ -61,7 +61,7 @@ export default {
   },
 
   created: function() {
-    axios.get(config.API_URL + "all_ingredients/"+this.postCode).then(res => {
+    axios.get(config.API_URL + "all-ingredients/"+this.postCode).then(res => {
       this.ingredients = res.data;
     });
   },
