@@ -69,11 +69,9 @@
 <script>
 import axios from "axios";
 import config from "../config";
-import IngredientsTable from "./IngredientsTable";
 
 export default {
   props: ["wanted", "notwanted", "postCode"],
-  components: [IngredientsTable],
   data() {
     return {
       dreamed: [],

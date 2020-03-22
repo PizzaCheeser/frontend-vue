@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <Logo />
     <DetailedText msg="Welcome to Pizza Cheeser!" /> 
 
      <br><br>
@@ -16,12 +16,14 @@
 <script>
 import DetailedText from "./DetailedText.vue";
 import PostCodeField from "./PostCodeField"
+import Logo from "./Logo"
 
 export default {
   name: "app",
   components: {
     DetailedText,
-    PostCodeField
+    PostCodeField,
+    Logo
   }
 };
 </script>

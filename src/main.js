@@ -6,6 +6,7 @@ import Home from './components/Home.vue';
 import IngredientsTable from './components/IngredientsTable.vue';
 import PizzasTable from './components/PizzasTable.vue';
 import PostCodeField from './components/PostCodeField';
+import Logo from './components/Logo';
 
 
 import BootstrapVue from 'bootstrap-vue'
@@ -25,9 +26,7 @@ const router = new VueRouter({
     { path: '/ingredients-table', component: IngredientsTable },
     { path: '/pizzas-table', component: PizzasTable },
     { path: '/postcode', component: PostCodeField },
-
-
-
+    { path: '/logo', component: Logo },
   ]
 })
 
