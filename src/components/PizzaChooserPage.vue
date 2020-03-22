@@ -1,6 +1,6 @@
 <template>
   <div id="app2">
-        <h2>Choose ingredients</h2>
+    <h2>Choose ingredients</h2>
     <ingredients-table
       v-bind:ingredients="ingredients"
       @ingredients="updateIngredients"
@@ -8,11 +8,8 @@
       @notwanted="updateNotWanted"
     ></ingredients-table>
 
-    {{this.wanted}}
-    {{this.notwanted}}
-
     <h2>Your dreamed pizzas:</h2>
-    
+
     <pizzas-table
       v-bind:wanted="wanted"
       v-bind:notwanted="notwanted"
@@ -34,7 +31,7 @@ import {
 
 import Vue from "vue";
 import axios from "axios";
-import config from '../config'
+import config from "../config";
 
 Vue.component("b-form-group", BFormGroup);
 Vue.component("b-form-checkbox", BFormCheckbox);
@@ -45,12 +42,12 @@ Vue.component("b-th", BTh);
 Vue.component("b-thead", BThead);
 
 import IngredientsTable from "./IngredientsTable";
+
 Vue.component("ingredients-table", IngredientsTable);
 
 import PizzasTable from "./PizzasTable";
+
 Vue.component("pizzas-table", PizzasTable);
-
-
 
 export default {
   props: ["id", "postCode"],
@@ -58,12 +55,12 @@ export default {
     return {
       ingredients: null,
       wanted: [],
-      notwanted: [],
+      notwanted: []
     };
   },
 
   created: function() {
-    axios.get(config.API_URL + "all-ingredients/"+this.postCode).then(res => {
+    axios.get(config.API_URL + "all-ingredients/" + this.postCode).then(res => {
       this.ingredients = res.data;
     });
   },
@@ -76,25 +73,26 @@ export default {
     },
     updateIngredients(variable) {
       this.ingredients = variable;
-    },
-
     }
+  }
 };
 </script>
-
 
 <style scoped lang="scss">
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }

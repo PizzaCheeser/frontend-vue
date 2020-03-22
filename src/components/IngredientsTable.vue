@@ -6,18 +6,30 @@
       id="bootstrap-css"
     />
 
+    <div id="pagination-div">
+      <b-pagination
+        v-model="currentPage"
+        align="right"
+        pills
+        :total-rows="rows"
+        :per-page="perPage"
+        size="lg"
+      ></b-pagination>
+    </div>
+
+
     <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
-          <b-th>Wanted</b-th>
-          <b-th>All ingredients</b-th>
-          <b-th>Not Wanted</b-th>
+          <b-th class="column-name">Wanted</b-th>
+          <b-th class="column-name">All ingredients</b-th>
+          <b-th class="column-name">Not Wanted</b-th>
         </b-tr>
 
         <b-tr>
           <b-td>
             <li v-for="want in wanted" :key="want" :value="want">
-              {{want}}
+              {{ want }}
               <button
                 type="button"
                 v-on:click="returnToAll(want, 'wanted')"
@@ -30,31 +42,35 @@
 
           <b-td>
             <ul>
-            <li v-for="ingredient in ingredients" :key="ingredient" :value="ingredient">
-              {{ingredient}}
+              <li
+                v-for="ingredient in SlicedIngredients"
+                :key="ingredient"
+                :value="ingredient"
+              >
+                {{ ingredient }}
 
-              <button
-                type="button"
-                v-on:click="remove(ingredient)"
-                class="btn btn-warning btn-circle btn-lg"
-              >
-                <i class="glyphicon glyphicon-remove"></i>
-              </button>
-              <button
-                value="testest"
-                type="button"
-                v-on:click="add(ingredient)"
-                class="btn btn-info btn-circle btn-lg"
-              >
-                <i class="glyphicon glyphicon-ok"></i>
-              </button>
-            </li>
+                <button
+                  type="button"
+                  v-on:click="remove(ingredient)"
+                  class="btn btn-warning btn-circle btn-lg"
+                >
+                  <i class="glyphicon glyphicon-remove"></i>
+                </button>
+                <button
+                  value="testest"
+                  type="button"
+                  v-on:click="add(ingredient)"
+                  class="btn btn-info btn-circle btn-lg"
+                >
+                  <i class="glyphicon glyphicon-ok"></i>
+                </button>
+              </li>
             </ul>
           </b-td>
 
           <b-td>
             <li v-for="notwant in notwanted" :key="notwant" :value="notwant">
-              {{notwant}}
+              {{ notwant }}
               <button
                 type="button"
                 v-on:click="returnToAll(notwant, 'notwanted')"
@@ -70,12 +86,7 @@
   </div>
 </template>
 
-
-
-
 <script>
-
-
 export default {
   name: "IngredientsTable",
   props: ["ingredients"],
@@ -83,10 +94,12 @@ export default {
   data() {
     return {
       wanted: [],
-      notwanted: []
+      notwanted: [],
+      perPage: 60,
+      currentPage: 1
     };
   },
-    methods: {
+  methods: {
     add(ingredient) {
       this.wanted.push(ingredient);
       let localIngredients = this.ingredients.filter(function(e) {
@@ -142,72 +155,24 @@ export default {
       "//code.jquery.com/jquery-1.11.1.min.js"
     );
     document.head.appendChild(recaptchaScript2);
+  },
+    computed: {
+    rows() {
+      if (!this.ingredients){
+        return 0
+      }
+      return this.ingredients.length;
+    },
+    SlicedIngredients() {
+      if (!this.ingredients){
+        return null;
+      }
+      return this.ingredients.slice(
+        (this.currentPage - 1) * this.perPage,
+        this.currentPage * this.perPage
+      );
+    }
   }
 };
 </script>
 
-
-
-<style>
-body {
-  margin: 40px;
-}
-
-.btn.btn-warning {
-  color: white;
-  background-color: red;
-  border-color: red;
-}
-
-.btn.btn-info {
-  background-color: green;
-}
-
-.btn-circle {
-  width: 30px;
-  height: 30px;
-  text-align: center;
-  padding: 6px 0;
-  font-size: 12px;
-  line-height: 1.428571429;
-  border-radius: 15px;
-}
-
-.btn-circle.btn-lg {
-  width: 15px;
-  height: 15px;
-  padding: 1px 1px;
-  font-size: 7px;
-  line-height: 0.33;
-  border-radius: 30px;
-  margin-right: 2px;
-  margin-left: 1px;
-  float:right; 
-
-}
-.btn-circle.btn-xl {
-  width: 70px;
-  height: 70px;
-  padding: 10px 16px;
-  font-size: 24px;
-  line-height: 1.33;
-  border-radius: 35px;
-}
-
-ul {
-          column-count: 3;
-          column-gap: 1px;
-          list-style-type: none;
-          text-align: left;
-          width: 100%;
-          
-}
-
-li {
-  width: 80%;
-  margin: 0px;
-}
-
-
-
-</style>
