@@ -10,7 +10,9 @@
 
     {{this.wanted}}
     {{this.notwanted}}
+
     <h2>Your dreamed pizzas:</h2>
+    
     <pizzas-table
       v-bind:wanted="wanted"
       v-bind:notwanted="notwanted"
