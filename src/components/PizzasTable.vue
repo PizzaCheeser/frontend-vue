@@ -8,17 +8,21 @@
           <b-th>Pizzeria name</b-th>
           <b-th>Pizza name</b-th>
           <b-th>Ingredients</b-th>
-          <b-th>Price/size</b-th>
+          <b-th>Price/Size</b-th>
+
         </b-tr>
         <b-tr v-for="(pizza,i) in dreamed" v-bind:key="pizza.id" v-bind:odd="i">
-            <b-td>{{i+1}}</b-td>
+          <b-td>{{i+1}}</b-td>
           <b-td><a v-bind:href="pizza['url']">Order here!</a></b-td>
           <b-td>{{pizza["pizzeria_id"]}}</b-td>       
           <b-td>{{pizza["pizzeria_name"] }}</b-td>
           <b-td>{{pizza["ingredients"]}}</b-td>
-          <b-td>{{pizza["size_price"]}}</b-td>
+          <b-tr v-for="i in pizza.size_price" v-bind:key="i">
+              <b-td>{{i["size"]}}</b-td>
+              <b-td>{{i["price"]}} PLN </b-td>
+          </b-tr>
 
-          
+
           <b-td v-if="pizza === 'No matching pizzas'">No pizzas</b-td>
         </b-tr>
       </b-thead>
