@@ -17,7 +17,6 @@
       ></b-pagination>
     </div>
 
-
     <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
@@ -156,15 +155,15 @@ export default {
     );
     document.head.appendChild(recaptchaScript2);
   },
-    computed: {
+  computed: {
     rows() {
-      if (!this.ingredients){
-        return 0
+      if (!this.ingredients) {
+        return 0;
       }
       return this.ingredients.length;
     },
     SlicedIngredients() {
-      if (!this.ingredients){
+      if (!this.ingredients) {
         return null;
       }
       return this.ingredients.slice(

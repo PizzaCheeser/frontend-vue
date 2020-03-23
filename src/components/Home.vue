@@ -1,13 +1,11 @@
 <template>
   <div id="app">
     <Logo />
-    <DetailedText msg="Welcome to Pizza Cheeser!" /> 
+    <DetailedText msg="PIZZA CHEESER" />
 
-     <br><br>
+    <br /><br />
 
-
-    <PostCodeField></PostCodeField>
-
+    <PostCodeField/>
 
     <!-- <router-link to="/choose" tag="button">Choose ingredients!</router-link> -->
   </div>
@@ -15,8 +13,8 @@
 
 <script>
 import DetailedText from "./DetailedText.vue";
-import PostCodeField from "./PostCodeField"
-import Logo from "./Logo"
+import PostCodeField from "./PostCodeField";
+import Logo from "./Logo";
 
 export default {
   name: "app",

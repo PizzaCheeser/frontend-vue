@@ -2,7 +2,7 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>
-     If you always have a problem to choose your dream pizza and perfect pizzeria which deliver it to you, you are on the right place!
+      Tutaj jakiś przekonujący tekst dlaczego ta apka jest fajna.
     </p>
   </div>
 </template>

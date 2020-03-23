@@ -3,17 +3,20 @@
  <div class="container">
     <div class='pizza' style="
         --cheese: #e4451e;
-        --crust: #c1963e;
+        --crust: #ffc244;
         --roni: #f1f5fc;
         font-size: 15px;
     ">
     <div class='logo'>
+      
       <div class='slice'></div>
       <div class='slice'></div>
       <div class='slice'></div>
       <div class='slice'></div>
       <div class='slice'></div>
       <div class='slice'></div>
+      <div class='slice'></div>
+      
       </div>
     </div>
   </div>
@@ -28,18 +31,18 @@ export default {
 
 
 
-<style lang="scss">
+<style lang="scss" >
 .container {
-	$number: 6;
+	$number: 7;
 	.pizza {
 		width: 30em;
 		height: 30em;
 		align-items: center;
 		background: none;
 		position: relative;
-        left: 25em;
+        margin: 0 auto;
 		.slice {
-			z-index: -1;
+			z-index: 1;
 			overflow: visible;
 			position: absolute;
 			width: 0;
@@ -63,7 +66,7 @@ export default {
 			}
 			@for $i from 1 through $number {
 				&:nth-of-type(#{$i}) {
-					transform: rotate(-#{($i + 6.5) * 360 / 8}deg);
+					transform: rotate(-#{($i + 13.5) * 360 / 8}deg);
 				}
 			}
 			&:before {

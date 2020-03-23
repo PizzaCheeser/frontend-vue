@@ -1,36 +1,46 @@
 <template>
   <div class="hello">
-     <b-container>
-        <label>Post code:</label>
-    <p>
-    <b-row>
-      <b-col md="2" offset-md="5">
-        <b-form-input type="text" id="postcode" name="postcode" v-model="postcode"></b-form-input>
-      </b-col>
-    </b-row>
-    </p>
-    
-    <p>
-    <b-row>
-        <b-col md="2" offset-md="5">
-         <router-link :disabled="validatePostcode" :to="{name: 'pizza-chooser', params: {postCode:postcode}}" tag="button" >
-                Choose ingredients!
-         </router-link>
-        </b-col>
-    </b-row>
-    </p>
-  </b-container>
+     <v-container>
+    <v-row offset-md="4">
+      
+        <v-col md="3" offset-md="4">
+        <v-text-field
+          label="Post code"
+          id="postcode"
+          v-model="postcode"
+          filled rounded
+        ></v-text-field>
+        </v-col>
+
+      <v-col md="3" offset-md="4">
+        <div class="my-2">
+          <v-btn rounded large 
+            color="primary"
+             :to="{name: 'pizza-chooser', params: {postCode:postcode}}">
+             Wybierz składniki
+          </v-btn>
+
+
+        </div>
+      </v-col>
+    </v-row>
+  </v-container>
   </div>
 </template>
 
 
 <script>
+  /*
     import Vue from "vue";
     import {
         BFormInput,
     } from "bootstrap-vue";
+    
 
     Vue.component("b-form-input", BFormInput); //TODO: sprawdzic
+  */
+
+
 
     export default {
         data() {
@@ -51,7 +61,8 @@
 
 </script>
 
-<style scoped lang="scss">
+
+<style scoped>
 button {
   margin: 40px 0 0;
   border-radius: 12px;
@@ -59,5 +70,9 @@ button {
 
 }
 
+.v-input__slot{
+  margin: 0 auto;
+}
 
 </style>
+
