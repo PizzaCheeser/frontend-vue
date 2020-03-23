@@ -20,9 +20,9 @@
     <b-table-simple hover small caption-top responsive>
       <b-thead head-variant="dark">
         <b-tr>
-          <b-th class="column-name">Wanted</b-th>
-          <b-th class="column-name">All ingredients</b-th>
-          <b-th class="column-name">Not Wanted</b-th>
+          <b-th class="column-name">Lubiane składniki</b-th>
+          <b-th class="column-name">Wszystkie</b-th>
+          <b-th class="column-name">Nie lubiane składniki</b-th>
         </b-tr>
 
         <b-tr>

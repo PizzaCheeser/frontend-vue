@@ -8,6 +8,8 @@
         :total-rows="rows"
         :per-page="perPage"
         size="lg"
+        class="customPagination"
+
       ></b-pagination>
     </div>
 
@@ -23,22 +25,22 @@
       <b-thead head-variant="dark">
         <b-tr>
           <b-th class="column-name">
-            No.
+            Nr
           </b-th>
           <b-th class="column-name">
-            URL
+            Link
           </b-th>
           <b-th class="column-name">
-            Pizzeria name
+            Nazwa pizzeri
           </b-th>
           <b-th class="column-name">
-            Pizza name
+            Nazwa pizzy
           </b-th>
           <b-th class="column-name">
-            Ingredients
+            Składniki
           </b-th>
           <b-th class="column-name">
-            Price and Size
+            Cena i rozmiar
           </b-th>
         </b-tr>
         <b-tr
@@ -48,7 +50,7 @@
         >
           <b-td>{{ i + 1 + perPage * (currentPage - 1) }}</b-td>
           <b-td>
-            <a v-bind:href="pizza['url']">Order here!</a>
+            <a v-bind:href="pizza['url']">Zamów tutaj!</a>
           </b-td>
           <b-td>{{ pizza["pizzeria_id"] }}</b-td>
           <b-td>{{ pizza["pizzeria_name"] }}</b-td>
@@ -114,3 +116,11 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+
+.column-name{
+  color:gold;
+}
+
+</style>

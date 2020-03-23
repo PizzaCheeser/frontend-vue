@@ -27,6 +27,13 @@ export default {
 
 <style>
 
+.page-item.active .page-link{
+  background-color: #ffc244 !important;
+}
+
+.table .thead-dark th{
+  background-color: #ffc244 !important;
+}
 
 body {
   margin: 40px;

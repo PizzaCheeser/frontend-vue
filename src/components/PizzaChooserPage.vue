@@ -1,6 +1,6 @@
 <template>
   <div id="app2">
-    <h2>Choose ingredients</h2>
+    <h2>Wybierz składniki</h2>
     <ingredients-table
       v-bind:ingredients="ingredients"
       @ingredients="updateIngredients"
@@ -8,7 +8,7 @@
       @notwanted="updateNotWanted"
     ></ingredients-table>
 
-    <h2>Your dreamed pizzas:</h2>
+    <h2>Znalezione pizze</h2>
 
     <pizzas-table
       v-bind:wanted="wanted"

@@ -3,11 +3,8 @@
     <Logo />
     <DetailedText msg="PIZZA CHEESER" />
 
-    <br /><br />
-
     <PostCodeField/>
 
-    <!-- <router-link to="/choose" tag="button">Choose ingredients!</router-link> -->
   </div>
 </template>
 

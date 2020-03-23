@@ -1,28 +1,22 @@
 <template>
   <div class="hello">
      <v-container>
-    <v-row offset-md="4">
+    <v-row offset-md="4"  md="2">
       
-        <v-col md="3" offset-md="4">
+      <v-col md="2" offset-md="5">
         <v-text-field
           label="Post code"
           id="postcode"
           v-model="postcode"
           filled rounded
         ></v-text-field>
-        </v-col>
-
-      <v-col md="3" offset-md="4">
-        <div class="my-2">
           <v-btn rounded large 
             color="primary"
              :to="{name: 'pizza-chooser', params: {postCode:postcode}}">
-             Wybierz składniki
+             Dalej ➡
           </v-btn>
-
-
-        </div>
       </v-col>
+
     </v-row>
   </v-container>
   </div>
