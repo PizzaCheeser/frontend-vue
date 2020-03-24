@@ -19,7 +19,7 @@ Vue.use(Vuetify);
 Vue.use(BootstrapVue);
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   routes: [
     { path: "/", component: Home },
     {
@@ -40,4 +40,3 @@ new Vue({
   vuetify,
   render: h => h(App)
 }).$mount("#app");
-

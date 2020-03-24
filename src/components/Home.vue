@@ -3,8 +3,7 @@
     <Logo />
     <DetailedText msg="PIZZA CHEESER" />
 
-    <PostCodeField/>
-
+    <PostCodeField />
   </div>
 </template>
 

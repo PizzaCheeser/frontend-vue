@@ -1,16 +1,14 @@
 <template>
   <v-app>
-  <div id="app">
-      <router-view/>
-  </div>
+    <div id="app">
+      <router-view />
+    </div>
   </v-app>
 </template>
 
 <script>
-
-
 export default {
-  name: "app",
+  name: "app"
 };
 </script>
 
@@ -26,12 +24,11 @@ export default {
 </style>
 
 <style>
-
-.page-item.active .page-link{
+.page-item.active .page-link {
   background-color: #ffc244 !important;
 }
 
-.table .thead-dark th{
+.table .thead-dark th {
   background-color: #ffc244 !important;
 }
 
@@ -40,10 +37,10 @@ body {
 }
 
 ul.pagination {
-  display: flex ;
+  display: flex;
 }
 
-.column-name{
+.column-name {
   text-align: center;
 }
 
@@ -104,5 +101,4 @@ li {
   width: 80%;
   margin: 0px;
 }
-
 </style>

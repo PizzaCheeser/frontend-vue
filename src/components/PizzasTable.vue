@@ -9,7 +9,6 @@
         :per-page="perPage"
         size="lg"
         class="customPagination"
-
       ></b-pagination>
     </div>
 
@@ -118,9 +117,7 @@ export default {
 </script>
 
 <style scoped>
-
-.column-name{
-  color:gold;
+.column-name {
+  color: gold;
 }
-
 </style>
