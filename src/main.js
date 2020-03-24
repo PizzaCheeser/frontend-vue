@@ -16,12 +16,11 @@ import vuetify from "./plugins/vuetify";
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
-
 Vue.use(BootstrapVue);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
-    //{ path: '/', name: 'app', component: App },
     { path: "/", component: Home },
     {
       path: "/choose/:postCode",

@@ -5,8 +5,9 @@
       
       <v-col md="2" offset-md="5">
         <v-text-field
-          label="Post code"
+          label="Kod pocztowy"
           id="postcode"
+          class="postcode"
           v-model="postcode"
           filled rounded
         ></v-text-field>
@@ -66,6 +67,10 @@ button {
 
 .v-input__slot{
   margin: 0 auto;
+}
+
+.postcode{
+  min-width: 110px;
 }
 
 </style>
