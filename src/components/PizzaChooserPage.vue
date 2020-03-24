@@ -5,57 +5,36 @@
       v-bind:ingredients="ingredients"
       @ingredients="updateIngredients"
       @wanted="updateWanted"
-      @notwanted="updateNotWanted"
+      @notWanted="updateNotWanted"
     ></ingredients-table>
 
     <h2>Znalezione pizze</h2>
 
     <pizzas-table
       v-bind:wanted="wanted"
-      v-bind:notwanted="notwanted"
+      v-bind:notWanted="notWanted"
       v-bind:postCode="postCode"
     ></pizzas-table>
   </div>
 </template>
 
 <script>
-import {
-  BFormGroup,
-  BFormCheckbox,
-  BFormRow,
-  BTableSimple,
-  BTr,
-  BTh,
-  BThead
-} from "bootstrap-vue";
-
-import Vue from "vue";
+import IngredientsTable from "./IngredientsTable.vue";
+import PizzasTable from "./PizzasTable.vue";
 import axios from "axios";
 import config from "../config";
 
-Vue.component("b-form-group", BFormGroup);
-Vue.component("b-form-checkbox", BFormCheckbox);
-Vue.component("b-form-row", BFormRow);
-Vue.component("b-table-simple", BTableSimple);
-Vue.component("b-tr", BTr);
-Vue.component("b-th", BTh);
-Vue.component("b-thead", BThead);
-
-import IngredientsTable from "./IngredientsTable";
-
-Vue.component("ingredients-table", IngredientsTable);
-
-import PizzasTable from "./PizzasTable";
-
-Vue.component("pizzas-table", PizzasTable);
-
 export default {
   props: ["id", "postCode"],
+  components: {
+    IngredientsTable,
+    PizzasTable
+  },
   data() {
     return {
       ingredients: null,
       wanted: [],
-      notwanted: []
+      notWanted: []
     };
   },
 
@@ -69,7 +48,7 @@ export default {
       this.wanted = variable;
     },
     updateNotWanted(variable) {
-      this.notwanted = variable;
+      this.notWanted = variable;
     },
     updateIngredients(variable) {
       this.ingredients = variable;
@@ -77,23 +56,3 @@ export default {
   }
 };
 </script>
-
-<style scoped lang="scss">
-h3 {
-  margin: 40px 0 0;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
-</style>

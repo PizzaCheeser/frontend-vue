@@ -16,7 +16,6 @@
       hover
       small
       caption-top
-      responsive
       id="pizzas-table"
       :per-page="perPage"
       :current-page="currentPage"
@@ -72,7 +71,7 @@ import axios from "axios";
 import config from "../config";
 
 export default {
-  props: ["wanted", "notwanted", "postCode"],
+  props: ["wanted", "notWanted", "postCode"],
   data() {
     return {
       dreamed: [],
@@ -82,11 +81,11 @@ export default {
   },
 
   methods: {
-    get_result_pizzas: function(current_wanted, current_notwanted) {
+    get_result_pizzas: function(currentWanted, currentNotWanted) {
       axios
         .post(config.API_URL + "get-pizzas", {
-          must: current_wanted,
-          must_not: current_notwanted,
+          must: currentWanted,
+          must_not: currentNotWanted,
           code: this.postCode
         })
         .then(res => {
@@ -96,10 +95,10 @@ export default {
   },
   watch: {
     wanted: function(wanted) {
-      this.get_result_pizzas(wanted, this.notwanted);
+      this.get_result_pizzas(wanted, this.notWanted);
     },
-    notwanted: function(notwanted) {
-      this.get_result_pizzas(this.wanted, notwanted);
+    notWanted: function(notWanted) {
+      this.get_result_pizzas(this.wanted, notWanted);
     }
   },
   computed: {
@@ -115,9 +114,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.column-name {
-  color: gold;
-}
-</style>

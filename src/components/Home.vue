@@ -2,15 +2,14 @@
   <div id="app">
     <Logo />
     <DetailedText msg="PIZZA CHEESER" />
-
     <PostCodeField />
   </div>
 </template>
 
 <script>
 import DetailedText from "./DetailedText.vue";
-import PostCodeField from "./PostCodeField";
-import Logo from "./Logo";
+import PostCodeField from "./PostCodeField.vue";
+import Logo from "./Logo.vue";
 
 export default {
   name: "app",

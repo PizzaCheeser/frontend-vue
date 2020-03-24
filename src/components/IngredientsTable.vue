@@ -17,7 +17,7 @@
       ></b-pagination>
     </div>
 
-    <b-table-simple hover small caption-top responsive>
+    <b-table-simple>
       <b-thead head-variant="dark">
         <b-tr>
           <b-th class="column-name">Lubiane składniki</b-th>
@@ -68,11 +68,15 @@
           </b-td>
 
           <b-td>
-            <li v-for="notwant in notwanted" :key="notwant" :value="notwant">
-              {{ notwant }}
+            <li
+              v-for="notWanted in notWantedIngredients"
+              :key="notWanted"
+              :value="notWanted"
+            >
+              {{ notWanted }}
               <button
                 type="button"
-                v-on:click="returnToAll(notwant, 'notwanted')"
+                v-on:click="returnToAll(notWanted, 'notWanted')"
                 class="btn btn-warning btn-circle btn-lg"
               >
                 <i class="glyphicon glyphicon-remove"></i>
@@ -93,7 +97,7 @@ export default {
   data() {
     return {
       wanted: [],
-      notwanted: [],
+      notWantedIngredients: [],
       perPage: 60,
       currentPage: 1
     };
@@ -110,15 +114,14 @@ export default {
       return this.wanted;
     },
     remove(ingredient) {
-      this.notwanted.push(ingredient);
-      //this.ingredients.pop(ingredient)
+      this.notWantedIngredients.push(ingredient);
       let localIngredients = this.ingredients.filter(function(e) {
         return e !== ingredient;
       });
-      this.$emit("notwanted", this.notwanted);
+      this.$emit("notWanted", this.notWantedIngredients);
       this.$emit("ingredients", localIngredients);
 
-      return this.notwanted;
+      return this.notWantedIngredients;
     },
     returnToAll(ingredient, arg) {
       let localIngredients = this.ingredients;
@@ -131,30 +134,18 @@ export default {
         });
         this.$emit("wanted", this.wanted);
         return this.wanted;
-      } else if (arg === "notwanted") {
-        this.notwanted = this.notwanted.filter(function(e) {
+      } else if (arg === "notWanted") {
+        this.notWantedIngredients = this.notWantedIngredients.filter(function(
+          e
+        ) {
           return e !== ingredient;
         });
-        this.$emit("notwanted", this.notwanted);
-        return this.notwanted;
+        this.$emit("notWanted", this.notWantedIngredients);
+        return this.notWantedIngredients;
       } else return 1;
     }
   },
-  mounted() {
-    let recaptchaScript = document.createElement("script");
-    recaptchaScript.setAttribute(
-      "src",
-      "//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
-    );
-    document.head.appendChild(recaptchaScript);
 
-    let recaptchaScript2 = document.createElement("script");
-    recaptchaScript2.setAttribute(
-      "src",
-      "//code.jquery.com/jquery-1.11.1.min.js"
-    );
-    document.head.appendChild(recaptchaScript2);
-  },
   computed: {
     rows() {
       if (!this.ingredients) {

@@ -9,7 +9,6 @@
             class="postcode"
             v-model="postcode"
             :error="validatePostcode"
-
             filled
             rounded
           ></v-text-field>
@@ -29,7 +28,6 @@
 </template>
 
 <script>
-
 export default {
   data() {
     return {
@@ -47,19 +45,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-button {
-  margin: 40px 0 0;
-  border-radius: 12px;
-  background-color: #ffc244;
-}
-
-.v-input__slot {
-  margin: 0 auto;
-}
-
-.postcode {
-  min-width: 110px;
-}
-</style>
