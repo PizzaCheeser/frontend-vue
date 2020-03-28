@@ -79,6 +79,9 @@ export default {
       currentPage: 1
     };
   },
+  mounted(){
+    this.get_result_pizzas([],[]);
+  },
 
   methods: {
     get_result_pizzas: function(currentWanted, currentNotWanted) {

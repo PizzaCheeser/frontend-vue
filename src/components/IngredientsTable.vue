@@ -6,6 +6,15 @@
       id="bootstrap-css"
     />
 
+    <v-text-field
+      label="Wyszukaj składnik"
+      id="search"
+      class="search"
+      v-model="searchIngredient"
+      filled
+      rounded
+    ></v-text-field>
+
     <div id="pagination-div">
       <b-pagination
         v-model="currentPage"
@@ -27,7 +36,7 @@
 
         <b-tr>
           <b-td>
-            <li v-for="want in wanted" :key="want" :value="want">
+            <li v-for="want in sortedWanted" :key="want" :value="want">
               {{ want }}
               <button
                 type="button"
@@ -69,7 +78,7 @@
 
           <b-td>
             <li
-              v-for="notWanted in notWantedIngredients"
+              v-for="notWanted in sortedNotWantedIngredients"
               :key="notWanted"
               :value="notWanted"
             >
@@ -99,7 +108,8 @@ export default {
       wanted: [],
       notWantedIngredients: [],
       perPage: 60,
-      currentPage: 1
+      currentPage: 1,
+      searchIngredient: ""
     };
   },
   methods: {
@@ -154,13 +164,28 @@ export default {
       return this.ingredients.length;
     },
     SlicedIngredients() {
+      let sortedIngredients = this.ingredients;
+
       if (!this.ingredients) {
         return null;
       }
-      return this.ingredients.slice(
-        (this.currentPage - 1) * this.perPage,
-        this.currentPage * this.perPage
-      );
+
+      return sortedIngredients
+        .filter(text => text.includes(this.searchIngredient))
+        .sort()
+        .slice(
+          (this.currentPage - 1) * this.perPage,
+          this.currentPage * this.perPage
+        );
+    },
+    sortedWanted() {
+      let sorted_wanted_ingredients = this.wanted;
+      //return this.wanted.sort();
+      return sorted_wanted_ingredients.sort();
+    },
+    sortedNotWantedIngredients() {
+      let sortedNotWanted = this.notWantedIngredients;
+      return sortedNotWanted.sort();
     }
   }
 };
