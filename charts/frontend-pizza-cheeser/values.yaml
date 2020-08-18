@@ -28,7 +28,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: pizza-cheeser.psota.pl
+    - host: old.pizza-cheeser.psota.pl
       paths:
         - "/"
   tls: []
